@@ -21,8 +21,6 @@ with open(filepath) as textFile:
 
 
 
-string = "movies"
-string.count("movies")
 
 path="C:/Users/zclou/Desktop/CSC 498/data/CoLinAdapt/Amazon/Users"
 
