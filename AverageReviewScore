@@ -1,0 +1,94 @@
+#CSC498
+#Average review score
+
+import pandas as pd
+import numpy as np
+
+# random selection of 100 networks without replacement
+r1=range(1000)
+sample=np.random.choice(r1,size=100,replace=False, p=None)
+
+# Create an empty dataset
+
+df=pd.DataFrame(columns=['User ID','Movies & TV','Books','Music', 'Home & Kitchen', 'Toys & Games', 'Health & Personal Care', 'Sports & Outdoors',\
+                         'Baby Products', 'Pet Supplies', 'Home Improvement', 'Watches', 'Automotive','Office Products','Electronics','Software',\
+                         'Video Games','Clothing & Accessories', 'Grocery & Gourmet Food','Beauty','Shoes','Network'])
+
+
+k=0
+
+# Retrieve the average review score of each user information along with his/her group information
+for j in sample:
+    
+    with open("/Users/Stella_xo/Desktop/AmazonFriends.txt","r") as files:
+        line=files.read().split('\n')[j]
+        e=str(k)
+        k=k+1
+
+    y=line.split('\t')
+
+    for i in range(len(y)):
+        v=y[i]
+        
+    
+        with open("/Users/Stella_xo/Desktop/data/CoLinAdapt/Amazon/Users/"+v+".txt","r") as file:
+            
+            
+            data=file.read().split('\n')
+
+        
+        
+        keyset=['Movies & TV','Books','Music', 'Home & Kitchen', 'Toys & Games', 'Health & Personal Care', 'Sports & Outdoors',\
+                         'Baby Products', 'Pet Supplies', 'Home Improvement', 'Watches', 'Automotive','Office Products','Electronics','Software',\
+                         'Video Games','Clothing & Accessories', 'Grocery & Gourmet Food','Beauty','Shoes']
+
+        r=[]
+
+        for key in keyset:
+            
+            if data.count(key)==0:
+                
+                count=1
+            else:
+                
+                count=data.count(key)
+    
+            s=0
+    
+    
+            for i in range(len(data)):
+                
+        
+                if key==data[i]:
+                    
+            
+                    index=i
+                    s=s+int(data[index+1])
+            
+           
+            r.append(round(s/count,ndigits=None))
+
+            # Fill up the dataset
+
+        df=df.append({'User ID':v, 'Movies & TV':r[0], 'Books':r[1], 'Music':r[2], 'Home & Kitchen':r[3], 'Toys & Games':r[4], 'Health & Personal Care':r[5],\
+                      'Sports & Outdoors':r[6], 'Baby Products':r[7], 'Pet Supplies':r[8], 'Home Improvement':r[9], 'Watches':r[10],\
+                      'Automotive':r[11],'Office Products':r[12], 'Electronics':r[13], 'Software':r[14], 'Video Games':r[15],'Clothing & Accessories':r[16],\
+                      'Grocery & Gourmet Food':r[17],'Beauty':r[18],'Shoes':r[19],'Network':'e'+e}, ignore_index=True)    
+
+        
+    
+        
+    
+        
+
+
+        
+    
+
+
+    
+        
+
+    
+    
+        
